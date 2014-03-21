@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TheNewStringCalculator.Expressions;
 
 namespace TheNewStringCalculator
 {
@@ -41,108 +42,19 @@ namespace TheNewStringCalculator
                 var @operator = operatorsMap[token];
 
                 if (@operator == Operator.Add)
-                    return new AdditionExpression(left, right);
+                    return new SimpleExpression(left, right, (a,b) => a.Evaluate() + b.Evaluate());
 
                 if (@operator == Operator.Subtract)
-                    return new SubtractionExpression(left, right);
+                    return new SimpleExpression(left, right, (a, b) => a.Evaluate() - b.Evaluate());
 
                 if (@operator == Operator.Multiply)
-                    return new MultiplicationExpression(left, right);
+                    return new SimpleExpression(left, right, (a, b) => a.Evaluate() * b.Evaluate());
 
                 if (@operator == Operator.Divide)
-                    return new DivisionExpression(left, right);
+                    return new SimpleExpression(left, right, (a, b) => a.Evaluate() / b.Evaluate());
             }
 
             return new ConstantExpression(token);
         }
-    }
-
-    public interface Expression
-    {
-        Double Evaluate();
-    }
-
-    public class DivisionExpression : Expression
-    {
-        private Expression left, right;
-
-        public DivisionExpression(Expression left, Expression right)
-        {
-            this.left = left;
-            this.right = right;
-        }
-
-        public Double Evaluate()
-        {
-            return left.Evaluate() / right.Evaluate();
-        }
-    }
-
-    public class MultiplicationExpression : Expression
-    {
-        private Expression left, right;
-
-        public MultiplicationExpression(Expression left, Expression right)
-        {
-            this.left = left;
-            this.right = right;
-        }
-
-        public Double Evaluate()
-        {
-            return left.Evaluate() * right.Evaluate();
-        }
-    }
-
-    public class SubtractionExpression : Expression
-    {
-        private Expression left, right;
-
-        public SubtractionExpression(Expression left, Expression right)
-        {
-            this.left = left;
-            this.right = right;
-        }
-
-        public Double Evaluate()
-        {
-            return left.Evaluate() - right.Evaluate();
-        }
-    }
-
-    public class AdditionExpression : Expression
-    {
-        private Expression left, right;
-
-        public AdditionExpression(Expression left, Expression right)
-        {
-            this.left = left;
-            this.right = right;
-        }
-
-        public Double Evaluate()
-        {
-            return left.Evaluate() + right.Evaluate();
-        }
-    }
-
-    public class ConstantExpression : Expression
-    {
-        private String input;
-
-        public ConstantExpression(String input)
-        {
-            this.input = input;
-        }
-
-        public Double Evaluate()
-        {
-            return Convert.ToDouble(input);
-        }
-
-        public override String ToString()
-        {
-            return input;
-        }
-    }
+    }    
 }

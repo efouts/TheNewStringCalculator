@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expression.cs" />
+    <Compile Include="Expressions\ConstantExpression.cs" />
+    <Compile Include="Expressions\SimpleExpression.cs" />
     <Compile Include="InfixCalculator.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="OperatorComparer.cs" />
