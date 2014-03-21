@@ -59,6 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalculatorTests.cs" />
+    <Compile Include="OperatorComparerTests.cs" />
+    <Compile Include="OperatorsMap.cs" />
+    <Compile Include="PostFixConverterTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SuiteTests.cs" />
   </ItemGroup>
